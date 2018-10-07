@@ -46,6 +46,18 @@ float Quaternion::norm() {
   return answer;
 }
 
+void Quaternion::euler(float& roll, float& pitch, float& yaw) {
+   roll = atan2(2 * x * y - 2 * w * z, 2 * w * w + 2 * x * x - 1);   // psi
+   pitch = -asin(2 * x * z + 2 * w * y);                              // theta
+   yaw = atan2(2 * y * z - 2 * w * x, 2 * w * w + 2 * z * z - 1);   // phi
+
+  roll *= 180 / PI;
+  pitch *= 180 / PI;
+  yaw *= 180 / PI;
+
+  //return new Vector3(data0, data1, data2);
+}
+
 
 Quaternion Quaternion::inverse() {
   float norm_1 = norm();
@@ -65,13 +77,13 @@ String Quaternion::toString() {
   String delimiter = ",";
   String s = "";
   char c[15];
-  dtostrf(x, 11, 10, c);
+  dtostrf(x, 6, 5, c);
   s += String(c) + delimiter;
-  dtostrf(y, 11, 10, c);
+  dtostrf(y, 6, 5, c);
   s += String(c) + delimiter;
-  dtostrf(z, 11, 10, c);
+  dtostrf(z, 6, 5, c);
   s += String(c) + delimiter;
-  dtostrf(w, 11, 10, c);
+  dtostrf(w, 6, 5, c);
   s += String(c);
   return s;
 }

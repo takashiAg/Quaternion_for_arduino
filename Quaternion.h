@@ -10,6 +10,7 @@ class Quaternion {
     Quaternion multiple(Quaternion a);
     float norm();
     Quaternion inverse();
+    void euler(float& roll, float& pitch, float& yaw);
     Quaternion Angular_difference(Quaternion p);
 
     String toString();
